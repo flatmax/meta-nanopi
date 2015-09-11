@@ -12,6 +12,8 @@ IMAGE_INSTALL = "\
     packagegroup-core-boot \
     i2c-tools \
     lrzsz \
+    brcm-patchram-plus \
+    ap6210-firmware-nanopi \
     ${CORE_IMAGE_EXTRA_INSTALL} \
     ${TOUCH} \
 "
