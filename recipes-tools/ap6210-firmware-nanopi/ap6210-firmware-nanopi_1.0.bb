@@ -9,16 +9,18 @@ LIC_FILES_CHKSUM = "file://${WORKDIR}/LICENSE.TXT;md5=02de91ee94eb0b66f407f5cef5
 
 S = "${WORKDIR}/git/targets/nanopi_overlay/lib/firmware/ap6210/"
 
+FILES_${PN} += "/lib/firmware/*"
+
 do_compile() {
 }
 
 do_install() {
-        install -v -d  ${D}/etc/firmware/
-        install -m 0755 bcm20702a.hcd ${D}/etc/firmware/
-        install -m 0755 fw_bcm40181a2.bin ${D}/etc/firmware/
-        install -m 0755 fw_bcm40181a2_apsta.bin ${D}/etc/firmware/
-        install -m 0755 fw_bcm40181a2_p2p.bin ${D}/etc/firmware/
-        install -m 0755 nvram.txt ${D}/etc/firmware/
+        install -v -d  ${D}/lib/firmware/ap6210/
+        install -m 0755 bcm20702a.hcd ${D}/lib/firmware/ap6210/
+        install -m 0755 fw_bcm40181a2.bin ${D}/lib/firmware/ap6210/
+        install -m 0755 fw_bcm40181a2_apsta.bin ${D}/lib/firmware/ap6210/
+        install -m 0755 fw_bcm40181a2_p2p.bin ${D}/lib/firmware/ap6210/
+        install -m 0755 nvram.txt ${D}/lib/firmware/ap6210/
 }
 
 SRC_URI[md5sum] = "02de91ee94eb0b66f407f5cef55e1629"
