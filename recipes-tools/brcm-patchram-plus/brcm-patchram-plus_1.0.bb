@@ -9,7 +9,7 @@ LIC_FILES_CHKSUM = "file://brcm_patchram_plus.c;md5=a1a36fbad61f424f16abdabd86d5
 S = "${WORKDIR}/git/broadcom_cws/bluetooth/firmware/"
 
 do_compile() {
-        ${CC} -O2 -Wall -o brcm_patchram_plus brcm_patchram_plus.c
+        ${CC} ${CFLAGS} ${LDFLAGS} -o brcm_patchram_plus brcm_patchram_plus.c
 }
 
 do_install() {
