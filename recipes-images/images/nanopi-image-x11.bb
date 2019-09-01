@@ -3,7 +3,7 @@ LICENSE = "MIT"
 
 IMAGE_FEATURES += "splash package-management x11-base ssh-server-dropbear "
 
-TOUCH = ' ${@base_contains("MACHINE_FEATURES", "touchscreen", "tslib tslib-calibrate tslib-tests", "",d)}'
+TOUCH = ' ${@bb.utils.contains("MACHINE_FEATURES", "touchscreen", "tslib tslib-calibrate tslib-tests", "",d)}'
 
 
 inherit core-image
