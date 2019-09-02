@@ -5,7 +5,7 @@ SRC_URI = "git://github.com/ARMWorks/dibs.git;branch=master;protocol=https;rev=b
            https://android.googlesource.com/platform/hardware/broadcom/wlan/+/gingerbread-mr4-release/bcm4329/firmware/LICENSE.TXT"
 
 LICENSE = "Proprietary"
-LIC_FILES_CHKSUM = "file://${WORKDIR}/LICENSE.TXT;md5=02de91ee94eb0b66f407f5cef55e1629"
+LIC_FILES_CHKSUM = "file://${WORKDIR}/LICENSE.TXT;md5=91f6591f298eaa669cc11d6e442f8e8e"
 
 S = "${WORKDIR}/git/targets/nanopi_overlay/lib/firmware/ap6210/"
 
@@ -23,5 +23,5 @@ do_install() {
         install -m 0755 nvram.txt ${D}/lib/firmware/ap6210/
 }
 
-SRC_URI[md5sum] = "02de91ee94eb0b66f407f5cef55e1629"
-SRC_URI[sha256sum] = "57e64c76b4e3bccb95a8f5fe995ead069a4e21660cc61acf9f2b33a0e53f677d"
+SRC_URI[md5sum] = "91f6591f298eaa669cc11d6e442f8e8e"
+SRC_URI[sha256sum] = "38e3db54598ba9a18792ea84fc1d28800f88a53315c66b6e601ac31fdedb55d6"
