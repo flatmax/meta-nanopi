@@ -1,0 +1,32 @@
+Index: git/fusing.sh
+===================================================================
+--- git.orig/fusing.sh
++++ git/fusing.sh
+@@ -188,7 +188,7 @@ if [ ! -f "${PARTMAP}" ]; then
+       		(cd ${TARGET_OS}/sd-boot && { \
+                		cp partmap.txt ../; \
+        		})
+-       fi	
++       fi
+ fi
+ 
+ if [ ! -f "${PARAM4SD}" ]; then
+@@ -218,6 +218,13 @@ if [ $SDUPDATE_RET -ne 0 ]; then
+ 	exit 1
+ fi
+ 
++sed -e 's/\s*\([\+0-9a-zA-Z]*\).*/\1/' << EOF | fdisk /dev/${DEV_NAME}
++  a # set partition to bottable
++  1 # part 1
++  w # write the partition table
++  q # and we're done
++EOF
++
+ if [ -z ${ARCH} ]; then
+ 	partprobe /dev/${DEV_NAME} -s 2>/dev/null
+ fi
+@@ -235,4 +242,3 @@ fi
+ echo "---------------------------------"
+ echo "${TARGET_OS^} is fused successfully."
+ echo "All done."
+-
