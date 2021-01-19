@@ -1,4 +1,6 @@
 require recipes-bsp/u-boot/u-boot.inc
+#require recipes-support/swupdate/swupdate.inc
+inherit sfuchunk
 
 DESCRIPTION = "Nanopi-M4 U-Boot"
 LICENSE = "GPLv2+"
@@ -13,18 +15,17 @@ inherit pythonnative
 HOST_EXTRACFLAGS += "-I${STAGING_INCDIR_NATIVE}"
 EXTRA_OEMAKE += ' HOSTLDSHARED="${BUILD_CC} -shared ${BUILD_LDFLAGS} ${BUILD_CFLAGS}" '
 
-do_configure () {
-    if [ -z "${UBOOT_CONFIG}" ]; then
-        if [ -n "${UBOOT_MACHINE}" ]; then
-            oe_runmake -C ${S} O=${B} ${UBOOT_MACHINE}
-        else
-            oe_runmake -C ${S} O=${B} oldconfig
-        fi
-	echo ${PWD}
-        ${S}/scripts/kconfig/merge_config.sh -m .config ${@" ".join(find_cfgs(d))}
-        cml1_do_configure
-    fi
-}
+#do_configure () {
+#    if [ -z "${UBOOT_CONFIG}" ]; then
+#      if [ -n "${UBOOT_MACHINE}" ]; then
+#            oe_runmake -C ${S} O=${B} ${UBOOT_MACHINE}
+#        else
+#            oe_runmake -C ${S} O=${B} oldconfig
+#        fi
+#        ${S}/scripts/kconfig/merge_config.sh -m .config ${@" ".join(find_cfgs(d))}
+#        cml1_do_configure
+#    fi
+#}
 
 do_compile_prepend () {
 	export STAGING_INCDIR=${STAGING_INCDIR_NATIVE};
@@ -36,4 +37,9 @@ do_compile_append () {
 	if [ ${SPL_BINARY} ]; then
 		cp ${B}/spl/${SPL_BINARY} ${B}/
 	fi
+	./tools/mkimage -C none -A arm -T script -d ../boot.cmd ${B}/../boot.scr
 }
+
+#do_install_append(){
+#	install -D -p -m0644 ${B}/../boot.scr ${D}/boot/boot.scr
+#}
