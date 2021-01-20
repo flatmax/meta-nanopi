@@ -9,6 +9,7 @@ SRC_URI = " \
 	git://github.com/friendlyarm/kernel-rockchip.git;branch=nanopi4-linux-v4.4.y;protocol=https; \
 	file://nanopim4_working_defconfig;subdir=git/arch/arm64/configs \
 	file://0001-slow-baud-rate.patch \
+	file://0004-bootargs-rootfs.patch \
 "
 
 S = "${WORKDIR}/git"
